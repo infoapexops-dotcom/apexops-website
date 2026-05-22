@@ -38,6 +38,10 @@ import {
    Update this to the deployed dashboard URL once it's live on Vercel. */
 const PORTAL_URL = "https://apexops-portal.vercel.app";
 
+/* Web3Forms public access key — lead submissions go to the registered inbox.
+   Designed to be used client-side; safe to ship. */
+const WEB3FORMS_KEY = "3b8b374b-832a-4af7-9678-27fd30af2248";
+
 
 /* -- Count-up that fires when scrolled into view -- */
 function useCountUp(target, run, { duration = 1400, decimals = 0 } = {}) {
@@ -663,14 +667,24 @@ function Contact() {
     if (!emailOk) { setErr("Please enter a valid work email."); return; }
     setStatus("sending");
     try {
-      const res = await fetch("/api/lead", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `New ApexOps demo request — ${form.name.trim()}`,
+          from_name: "ApexOps Website",
+          replyto: form.email.trim(),
+          Name: form.name.trim(),
+          Email: form.email.trim(),
+          "Fleet size": form.fleet || "—",
+          Message: form.message.trim() || "—",
+        }),
       });
-      if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.error || "Something went wrong."); }
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || out.success === false) throw new Error(out.message || "Something went wrong.");
       setStatus("done");
-    } catch (e2) { setErr(e2.message || "Could not submit — try again."); setStatus("error"); }
+    } catch (e2) { setErr("Could not submit — please try again, or email info.apexops@gmail.com directly."); setStatus("error"); }
   };
 
   const bullets = [[Gauge, "Live in minutes — upload an export, see insights instantly"], [Check, "Your data stays yours — private workspace per partner"], [Sparkles, "Free 14-day trial on every plan, no card required"]];
