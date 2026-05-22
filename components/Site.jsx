@@ -34,6 +34,10 @@ import {
    Dark futuristic command-center aesthetic. Next.js + Framer Motion.
    =================================================================== */
 
+/* Partner portal (dashboard) login URL.
+   Update this to the deployed dashboard URL once it's live on Vercel. */
+const PORTAL_URL = "https://apexops-portal.vercel.app";
+
 
 /* -- Count-up that fires when scrolled into view -- */
 function useCountUp(target, run, { duration = 1400, decimals = 0 } = {}) {
@@ -124,7 +128,7 @@ function Nav() {
           ))}
         </div>
         <div className="hide-sm" style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <a href="#contact" style={{ fontSize: 14, fontWeight: 600, color: "var(--ink)" }}>Sign in</a>
+          <a href={PORTAL_URL} target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, fontWeight: 600, color: "var(--ink)" }}>Sign in</a>
           <a href="#contact" className="btn btn-primary" style={{ padding: "10px 18px", fontSize: 14 }}>Start Free Trial <ArrowRight size={15} /></a>
         </div>
         <button className="glass nav-burger" style={{ padding: 9, borderRadius: 10, color: "var(--ink)", alignItems: "center", justifyContent: "center" }} onClick={() => setOpen(!open)} aria-label="Menu">
@@ -138,6 +142,7 @@ function Nav() {
             {links.map(([l, h]) => (
               <a key={l} href={h} onClick={() => setOpen(false)} style={{ fontSize: 15, fontWeight: 500, color: "var(--dim)", padding: "10px 8px" }}>{l}</a>
             ))}
+            <a href={PORTAL_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} style={{ fontSize: 15, fontWeight: 600, color: "var(--ink)", padding: "10px 8px" }}>Sign in</a>
             <a href="#contact" onClick={() => setOpen(false)} className="btn btn-primary" style={{ justifyContent: "center", marginTop: 8 }}>Start Free Trial <ArrowRight size={15} /></a>
           </motion.div>
         )}
