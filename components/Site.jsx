@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
@@ -29,13 +29,13 @@ import {
   ChevronRight, Zap, Star, Loader2, CheckCircle2, AlertCircle,
 } from "lucide-react";
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   ApexOps â€” AI Logistics Intelligence Â· marketing site
+/* ===================================================================
+   ApexOps — AI Logistics Intelligence · marketing site
    Dark futuristic command-center aesthetic. Next.js + Framer Motion.
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   =================================================================== */
 
 
-/* â”€â”€ Count-up that fires when scrolled into view â”€â”€ */
+/* -- Count-up that fires when scrolled into view -- */
 function useCountUp(target, run, { duration = 1400, decimals = 0 } = {}) {
   const [v, setV] = useState(0);
   useEffect(() => {
@@ -70,7 +70,7 @@ function Stat({ value, decimals, suffix = "", prefix = "", label, sub }) {
   );
 }
 
-/* â”€â”€ Scroll reveal wrapper â”€â”€ */
+/* -- Scroll reveal wrapper -- */
 function Reveal({ children, delay = 0, y = 28, style }) {
   return (
     <motion.div
@@ -102,7 +102,7 @@ const Logo = ({ size = 30 }) => (
   </div>
 );
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• NAV â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* =========================== NAV =========================== */
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -146,7 +146,7 @@ function Nav() {
   );
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• HERO â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* =========================== HERO =========================== */
 function MiniChart({ color = "#22D3EE" }) {
   const pts = [22, 30, 26, 38, 34, 48, 44, 60, 56, 72];
   const w = 220, h = 64, max = 72;
@@ -181,7 +181,7 @@ function DashboardMockup() {
             <Logo size={22} />
           </div>
           <div className="chip" style={{ fontSize: 11 }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#34D399", boxShadow: "0 0 8px #34D399", animation: "pulseDot 2s infinite", display: "inline-block" }} /> Live Â· May 2026
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#34D399", boxShadow: "0 0 8px #34D399", animation: "pulseDot 2s infinite", display: "inline-block" }} /> Live · May 2026
           </div>
         </div>
         {/* KPI row */}
@@ -197,7 +197,7 @@ function DashboardMockup() {
         {/* chart */}
         <div className="glass" style={{ borderRadius: 13, padding: "14px 15px 6px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-            <p style={{ fontSize: 12, fontWeight: 600 }}>Fleet orders Â· 7-day</p>
+            <p style={{ fontSize: 12, fontWeight: 600 }}>Fleet orders · 7-day</p>
             <p className="mono" style={{ fontSize: 12, color: "#22D3EE", fontWeight: 700 }}>6,691</p>
           </div>
           <MiniChart />
@@ -241,7 +241,7 @@ function Hero() {
             </motion.h1>
             <motion.p initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.18 }}
               style={{ fontSize: 18, color: "var(--dim)", lineHeight: 1.6, marginTop: 22, maxWidth: 540 }}>
-              AI-powered rider analytics, automation, forecasting, payroll, reporting and operational intelligence â€” all in one futuristic command center.
+              AI-powered rider analytics, automation, forecasting, payroll, reporting and operational intelligence — all in one futuristic command center.
             </motion.p>
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.28 }}
               style={{ display: "flex", gap: 14, marginTop: 32, flexWrap: "wrap" }}>
@@ -262,7 +262,7 @@ function Hero() {
   );
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• TRUST MARQUEE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ======================= TRUST MARQUEE ======================= */
 function TrustMarquee() {
   const items = ["Keeta", "Telegram", "n8n", "Google Sheets", "Excel", "OpenClaw", "Webhooks", "REST API", "Slack", "WhatsApp"];
   const row = [...items, ...items];
@@ -284,7 +284,7 @@ function TrustMarquee() {
   );
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• SHOWCASE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ======================= SHOWCASE ======================= */
 function AnimatedBars() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -336,7 +336,7 @@ function Showcase() {
             Your entire fleet, <span className="grad-text">visualized in real time</span>
           </h2>
           <p style={{ fontSize: 16.5, color: "var(--dim)", marginTop: 16, lineHeight: 1.6 }}>
-            Animated KPI cards, predictive charts and AI insight popups â€” the same intelligence layer your team checks every morning.
+            Animated KPI cards, predictive charts and AI insight popups — the same intelligence layer your team checks every morning.
           </p>
         </Reveal>
         <Reveal delay={0.1}>
@@ -376,16 +376,16 @@ function Showcase() {
   );
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• FEATURES â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ======================= FEATURES ======================= */
 const FEATURES = [
-  [Activity, "Rider Performance Analytics", "Per-rider scoring across orders, OTR, ATA, attendance and rejection â€” top & bottom 10% surfaced with reasons.", "#22D3EE"],
+  [Activity, "Rider Performance Analytics", "Per-rider scoring across orders, OTR, ATA, attendance and rejection — top & bottom 10% surfaced with reasons.", "#22D3EE"],
   [Wallet, "Payroll Automation", "Part A/B/C settlement, salary slips and deductions generated straight from the Keeta export.", "#60A5FA"],
   [TrendingUp, "Forecasting AI", "Month-end projections per rider with mid-month joiner pro-rating and capacity-tier modeling.", "#34D399"],
-  [FileText, "AI Reports", "Narrated, board-ready operational reports generated on demand â€” no manual spreadsheets.", "#A855F7"],
+  [FileText, "AI Reports", "Narrated, board-ready operational reports generated on demand — no manual spreadsheets.", "#A855F7"],
   [Workflow, "Automated Operations", "n8n + webhook flows that ingest data, recompute KPIs and push alerts automatically.", "#F59E0B"],
   [Gauge, "Real-Time Insights", "Live VDA, capacity tiers and rejection rates the moment new data lands.", "#38BDF8"],
-  [Send, "Telegram AI Assistant", "Ask your fleet questions in chat â€” grounded answers, daily digests, at-risk pings.", "#22D3EE"],
-  [Bell, "Smart Notifications", "QID expiry, at-risk drivers, payroll-ready and stock-low â€” routed where your team works.", "#F472B6"],
+  [Send, "Telegram AI Assistant", "Ask your fleet questions in chat — grounded answers, daily digests, at-risk pings.", "#22D3EE"],
+  [Bell, "Smart Notifications", "QID expiry, at-risk drivers, payroll-ready and stock-low — routed where your team works.", "#F472B6"],
   [Video, "AI Video Reports", "Auto-generated cinematic recap videos of the week's operational performance.", "#60A5FA"],
   [BarChart3, "Data Visualization", "Animated charts, rings and trend lines built for the morning ops stand-up.", "#34D399"],
 ];
@@ -396,7 +396,7 @@ function Features() {
         <Reveal style={{ textAlign: "center", maxWidth: 660, margin: "0 auto 46px" }}>
           <span className="section-eyebrow">Platform</span>
           <h2 style={{ fontSize: "clamp(30px,4vw,46px)", fontWeight: 800, marginTop: 14 }}>Everything your ops team <span className="grad-text">runs the day on</span></h2>
-          <p style={{ fontSize: 16.5, color: "var(--dim)", marginTop: 16 }}>Ten capabilities, one intelligence layer â€” replacing a stack of spreadsheets and manual reports.</p>
+          <p style={{ fontSize: 16.5, color: "var(--dim)", marginTop: 16 }}>Ten capabilities, one intelligence layer — replacing a stack of spreadsheets and manual reports.</p>
         </Reveal>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(290px,1fr))", gap: 16 }}>
           {FEATURES.map(([Icon, title, desc, color], i) => (
@@ -418,7 +418,7 @@ function Features() {
   );
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• AUTOMATION â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ======================= AUTOMATION ======================= */
 function Automation() {
   const nodes = [
     [Database, "Keeta export", "#60A5FA"], [Table2, "Excel / Sheets", "#34D399"],
@@ -469,12 +469,12 @@ function Automation() {
   );
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• SOCIAL PROOF â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ======================= SOCIAL PROOF ======================= */
 function SocialProof() {
   const testimonials = [
     ["Cut our month-end payroll from 3 days to 20 minutes. The AI catches at-risk riders before they cost us a tier.", "Operations Director", "Al Maha Logistics"],
     ["The Telegram assistant answers what used to need a full analyst. Our supervisors check it every morning.", "Fleet Supervisor", "Qatar Express"],
-    ["Forecasting alone paid for the platform â€” we hit Tier A two months running.", "GM", "Gulf Swift Delivery"],
+    ["Forecasting alone paid for the platform — we hit Tier A two months running.", "GM", "Gulf Swift Delivery"],
   ];
   return (
     <section style={{ position: "relative", zIndex: 1, padding: "70px 0" }}>
@@ -507,7 +507,7 @@ function SocialProof() {
   );
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• DEMO â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ======================= DEMO ======================= */
 function Demo() {
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef(null);
@@ -548,7 +548,7 @@ function Demo() {
   );
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• PRICING â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ======================= PRICING ======================= */
 const PLANS = [
   ["Starter", 599, "For small partner fleets", ["Up to 30 riders", "Core analytics & VDA", "Payroll automation", "CSV / Excel import", "Email support"], false],
   ["Pro", 1299, "For scaling operations", ["Up to 120 riders", "Forecasting AI", "Telegram AI assistant", "Automated reports", "Priority support"], true],
@@ -598,7 +598,7 @@ function Pricing() {
   );
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• FINAL CTA â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ======================= FINAL CTA ======================= */
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", fleet: "", message: "" });
   const [status, setStatus] = useState("idle"); // idle | sending | done | error
@@ -747,7 +747,7 @@ function FinalCTA() {
   );
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• FOOTER â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ======================= FOOTER ======================= */
 function Footer() {
   const cols = [
     ["Product", ["Platform", "Features", "Automation", "Pricing", "Changelog"]],
@@ -761,7 +761,7 @@ function Footer() {
           <div>
             <Logo />
             <p style={{ fontSize: 13.5, color: "var(--faint)", marginTop: 16, lineHeight: 1.6, maxWidth: 280 }}>
-              AI logistics intelligence for delivery partners â€” analytics, payroll, forecasting and automation in one command center.
+              AI logistics intelligence for delivery partners — analytics, payroll, forecasting and automation in one command center.
             </p>
             <div style={{ display: "flex", gap: 10, marginTop: 18 }}>
               {[Twitter, Linkedin, Globe].map((Ic, i) => (
@@ -780,8 +780,8 @@ function Footer() {
           ))}
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 44, paddingTop: 22, borderTop: "1px solid var(--border)", flexWrap: "wrap", gap: 12 }}>
-          <p style={{ fontSize: 12.5, color: "var(--faint)" }}>Â© 2026 ApexOps Â· AI Logistics Intelligence Â· Doha, Qatar</p>
-          <p style={{ fontSize: 12.5, color: "var(--faint)" }}>Privacy Â· Terms Â· API Access</p>
+          <p style={{ fontSize: 12.5, color: "var(--faint)" }}>© 2026 ApexOps · AI Logistics Intelligence · Doha, Qatar</p>
+          <p style={{ fontSize: 12.5, color: "var(--faint)" }}>Privacy · Terms · API Access</p>
         </div>
       </div>
     </footer>
