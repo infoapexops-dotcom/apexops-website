@@ -72,6 +72,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .field{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;padding:12px 14px;color:var(--ink);font-size:14px;font-family:inherit;transition:all .2s}
 .field:focus{outline:none;border-color:rgba(34,211,238,0.45);background:rgba(34,211,238,0.05);box-shadow:0 0 0 3px rgba(34,211,238,0.12)}
 .field::placeholder{color:var(--faint)}
+/* select: force dark native dropdown so options are readable + custom caret */
+select.field{color-scheme:dark;-webkit-appearance:none;appearance:none;padding-right:40px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237FE9F7' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+.field option{background:#0b1120;color:#e6edf3}
+.field option:checked{background:#3B82F6;color:#fff}
 
 /* ─── Workflow flow line ─── */
 @keyframes dash{to{stroke-dashoffset:-26}}
