@@ -26,7 +26,7 @@ import {
   Sparkles, BarChart3, Wallet, TrendingUp, FileText, Bell, Video, Workflow,
   ArrowRight, Play, Check, Activity, Database,
   Table2, Send, Linkedin, Twitter, Globe, Menu, X, Quote, Gauge, Rocket, Cpu,
-  ChevronRight, Zap, Star, Loader2, CheckCircle2, AlertCircle,
+  ChevronRight, ChevronDown, Zap, Star, Loader2, CheckCircle2, AlertCircle,
 } from "lucide-react";
 
 /* ===================================================================
@@ -603,6 +603,52 @@ function Pricing() {
   );
 }
 
+/* Custom dropdown — fully styled, dark, readable in every browser
+   (avoids the unstyleable native <select> popup). */
+function FleetSelect({ value, onChange, options, placeholder }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  useEffect(() => {
+    if (!open) return;
+    const onDoc = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    const onKey = (e) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onKey); };
+  }, [open]);
+  return (
+    <div ref={ref} style={{ position: "relative" }}>
+      <button type="button" className="field" onClick={() => setOpen((o) => !o)}
+        style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, cursor: "pointer", textAlign: "left", color: value ? "var(--ink)" : "var(--faint)" }}>
+        <span>{value || placeholder}</span>
+        <ChevronDown size={16} color="#7FE9F7" style={{ flexShrink: 0, transform: open ? "rotate(180deg)" : "none", transition: "transform .2s" }} />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.ul initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.15 }}
+            style={{ position: "absolute", top: "calc(100% + 6px)", left: 0, right: 0, zIndex: 40, listStyle: "none", margin: 0, padding: 6,
+              background: "#0b1120", border: "1px solid var(--border)", borderRadius: 12, boxShadow: "0 18px 50px rgba(0,0,0,0.55)", maxHeight: 260, overflowY: "auto" }}>
+            {options.map((opt) => {
+              const sel = opt === value;
+              return (
+                <li key={opt}>
+                  <button type="button" onClick={() => { onChange(opt); setOpen(false); }}
+                    style={{ width: "100%", textAlign: "left", padding: "10px 12px", borderRadius: 8, border: "none", cursor: "pointer", fontSize: 14, fontFamily: "inherit",
+                      background: sel ? "rgba(34,211,238,0.16)" : "transparent", color: sel ? "#7FE9F7" : "var(--ink)", transition: "background .15s" }}
+                    onMouseEnter={(e) => { if (!sel) e.currentTarget.style.background = "rgba(255,255,255,0.06)"; }}
+                    onMouseLeave={(e) => { if (!sel) e.currentTarget.style.background = "transparent"; }}>
+                    {opt}
+                  </button>
+                </li>
+              );
+            })}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 /* ======================= FINAL CTA ======================= */
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", fleet: "", message: "" });
@@ -682,13 +728,12 @@ function Contact() {
                     </div>
                     <div>
                       <label style={{ display: "block", fontSize: 12, color: "var(--dim)", fontWeight: 600, marginBottom: 7 }}>Fleet size</label>
-                      <select className="field" value={form.fleet} onChange={set("fleet")} style={{ appearance: "none" }}>
-                        <option value="">Select range…</option>
-                        <option>1–30 riders</option>
-                        <option>31–80 riders</option>
-                        <option>81–150 riders</option>
-                        <option>150+ riders</option>
-                      </select>
+                      <FleetSelect
+                        value={form.fleet}
+                        onChange={(v) => { setForm((f) => ({ ...f, fleet: v })); setErr(""); }}
+                        placeholder="Select range…"
+                        options={["1–30 riders", "31–80 riders", "81–150 riders", "150+ riders"]}
+                      />
                     </div>
                     <div>
                       <label style={{ display: "block", fontSize: 12, color: "var(--dim)", fontWeight: 600, marginBottom: 7 }}>What do you want to improve?</label>
